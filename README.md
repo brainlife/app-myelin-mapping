@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -20,28 +20,28 @@ Divides the T1-weighted by the T2-weighted image voxel-wise with wb_command -vol
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/anat/t1w` · `neuro/anat/t2w` |
-| 📤 **Outputs** | `neuro/myelin-map` |
-| 🐳 **Container** | `brainlife/connectome_workbench:1.4.2b` |
-| ⚙️ **Resources** | 1 CPUs · 0.5 h walltime |
-| 🔑 **Requires** | `FREESURFER_LICENSE` |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.478](https://doi.org/10.25663/brainlife.app.478) |
+| **Inputs** | `neuro/anat/t1w` · `neuro/anat/t2w` |
+| **Outputs** | `neuro/myelin-map` |
+| **Container** | `brainlife/connectome_workbench:1.4.2b` |
+| **Resources** | 1 CPUs · 0.5 h walltime |
+| **Requires** | `FREESURFER_LICENSE` |
+| **Run it** | [doi.org/10.25663/brainlife.app.478](https://doi.org/10.25663/brainlife.app.478) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `t1` | `neuro/anat/t1w` | yes | T1-weighted image. |
 | `t2` | `neuro/anat/t2w` | yes | T2-weighted image of the same subject. Must be aligned to the T1; on the same voxel grid unless reslice is true. |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
 | `output` | `neuro/myelin-map` | Myelin map (map.nii.gz): the T1w/T2w ratio clamped to 0-100. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (1)</summary>
+<summary><b>Parameters</b> (1)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -51,15 +51,15 @@ Divides the T1-weighted by the T2-weighted image voxel-wise with wb_command -vol
 
 <!-- brainlife-app:end -->
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/brainlife.app.478](https://doi.org/10.25663/brainlife.app.478), choose a T1-weighted and a T2-weighted image of the same subject from your project and press **Execute**. The myelin map is archived to your project as a `neuro/myelin-map` dataset tagged `t1-t2-ratio`.
 
 The App divides the T1-weighted image by the T2-weighted image voxel by voxel (`wb_command -volume-math`), clamps the result to 0–100 and sets NaNs to 0. No bias-field correction is applied. The two images must be aligned; if they are on different voxel grids, set `reslice` to resample the T2 onto the T1 grid with FreeSurfer `mri_vol2vol` first (this uses the image headers only and does not register the images).
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/), [`jq`](https://jqlang.github.io/jq/) and a [FreeSurfer license](https://surfer.nmr.mgh.harvard.edu/registration.html) (used by the `reslice` step).
 
@@ -81,19 +81,19 @@ You need [Singularity/Apptainer](https://apptainer.org/), [`jq`](https://jqlang.
    ./main
    ```
 
-## 📦 Outputs
+## Outputs
 
 ```text
 output/
 └── map.nii.gz   T1w/T2w ratio, clamped to 0–100 (neuro/myelin-map)
 ```
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`Please set FREESURFER_LICENSE in .bashrc`**: export the `FREESURFER_LICENSE` environment variable before running `./main` (brainlife.io provides it automatically).
 - **`app failed. check logs`**: `map.nii.gz` was not written, most often because the T1 and T2 images are on different voxel grids. Set `reslice` to `true`, and make sure the images are aligned beforehand.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -105,11 +105,11 @@ output/
 - Marcus et al. Informatics and Data Mining Tools and Strategies for the Human Connectome Project. *Frontiers in Neuroinformatics* 5 (2011). [doi:10.3389/fninf.2011.00004](https://doi.org/10.3389/fninf.2011.00004)
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -128,6 +128,6 @@ output/
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](LICENSE). Connectome Workbench and FreeSurfer are distributed under their own licenses.
